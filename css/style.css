@@ -260,6 +260,7 @@ header.sticky{
     transition: all .40s;
 }
 .row img{
+    cursor: pointer;
     width: 100%;
     height: auto;
     transition: all .40s;
