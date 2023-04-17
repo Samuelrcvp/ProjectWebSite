@@ -1,25 +1,3 @@
-function updateProductInfo(productNumber) {
-  
-    var productText = document.querySelector(".product-text h5");
-    productText.textContent = produtos[productNumber].productText;
-  
-    var productName = document.querySelector(".price h4");
-    productName.textContent = produtos[productNumber].productName;
-  
-    var productPrice = document.querySelector(".price p");
-    productPrice.textContent = produtos[productNumber].productPrice;
-  }
-  
-  // Evento de clique em cada imagem para chamar a função de atualização com o número da imagem correspondente
-  var smallImgs = document.querySelectorAll(".small-img");
-  smallImgs.forEach(function(smallImg, index) {
-    smallImg.addEventListener("click", function() {
-      updateProductInfo(index);
-    });
-  });
-
-
-
 
 // Barra de pesquisa
 
