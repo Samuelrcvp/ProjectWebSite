@@ -442,7 +442,16 @@ header.sticky{
         transition: .4s;
     }
     .main-home{
-        background-image: url(/imgs/fundo-site-630×768px.jpg);
+        background-image: url(/imgs/fundo-site-celular.jpg);
+    }
+    .down-arrow{
+        position: absolute;
+        top: 85%;
+        right: 0;
+        left:4%;
+    }
+    .whatsapp-flutuante{
+        display: none;
     }
     #modal-img{
         width: 85vw;
