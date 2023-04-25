@@ -1,9 +1,55 @@
 
 // Barra de pesquisa
 
-document.getElementById("search-icon").addEventListener("click", function() {
-    document.querySelector(".search-bar").classList.toggle("show-search-bar");
-  });
+// selecione o ícone de pesquisa
+const searchIcon = document.querySelector("#search-icon");
+
+// selecione a barra de pesquisa
+const searchBar = document.querySelector(".search-bar");
+
+// adicione um ouvinte de eventos de clique ao ícone de pesquisa
+searchIcon.addEventListener("click", () => {
+  // verifique se a barra de pesquisa já está visível
+  if (searchBar.classList.contains("show-search-bar")) {
+    // obtenha o valor atual da barra de pesquisa
+    const searchTerm = searchBar.value;
+
+    // redirecione para a página de resultados de pesquisa
+    window.location.href = "/search?query=" + searchTerm;
+  } else {
+    // exiba a barra de pesquisa
+    searchBar.classList.add("show-search-bar");
+    searchBar.focus();
+  }
+});
+
+// adicione um ouvinte de eventos de tecla à barra de pesquisa
+searchBar.addEventListener("keyup", (event) => {
+  // verifique se a tecla pressionada foi Enter
+  if (event.key === "Enter") {
+    // obtenha o valor atual da barra de pesquisa
+    const searchTerm = searchBar.value;
+
+    // redirecione para a página de resultados de pesquisa
+    window.location.href = "/search?query=" + searchTerm;
+  }
+});
+
+// const searchTerm = "Box Balão de Flores";
+
+// // Percorre a matriz productsData
+// for (let i = 0; i < productsData.length; i++) {
+//   // Verifica se o nome do produto corresponde ao termo de pesquisa
+//   if (productsData[i].nome === searchTerm) {
+//     // Faça algo com o produto encontrado, como exibir o nome ou imagem
+//     console.log(productsData[i]);
+//   }
+// }
+
+
+
+
+
 
 // Rolagem de tela header
 

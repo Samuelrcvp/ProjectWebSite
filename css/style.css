@@ -228,10 +228,7 @@ header.sticky{
     position: absolute;
     top: 8vh;
     right: 8vw;
-    padding: 4px 10px;
-    font-size: 25px;
-    border-radius: 20px;
-    box-shadow: 1px 1px 15px #fff;
+    font-size: 35px;
     cursor: pointer;
 }
 .modal-active{
