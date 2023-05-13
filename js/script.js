@@ -55,7 +55,7 @@ searchBar.addEventListener("keyup", (event) => {
 
 const header = document.querySelector("header");
 
-window.addEventListener("scroll", function(){
+window.addEventListener("scroll", ()=>{
     header.classList.toggle("sticky", this.window.scrollY > 0);
 })
 
@@ -69,9 +69,9 @@ menu.onclick = () =>{
     navmenu.classList.toggle('open');
 }
 
-document.addEventListener('click', (event) => {
+document.addEventListener('click', (fecharMenuMobile) => {
     // Verifica se o clique ocorreu fora do menu
-    if (!event.target.closest('#menu-icon') && !event.target.closest('.nav-menu')) {
+    if (!fecharMenuMobile.target.closest('#menu-icon') && !fecharMenuMobile.target.closest('.nav-menu')) {
       menu.classList.remove('bx-x');
       navmenu.classList.remove('open');
     }
