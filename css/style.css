@@ -362,46 +362,20 @@ header.sticky{
     font-weight: 500;
 }
 
-/* .contact{
-    
-    text-align: center;
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, auto));
- 
+/* Scroll bar animação */
+
+[data-anime]{
+    opacity: 0;
+    transition: .8s;
+    overflow-x: hidden;
 }
-.contact-social{
-    position: relative;
-    transition: all .40s;
-    padding-top: 80px;
-    background-color:#fff ;
+[data-anime="Bottom"]{
+    transform: translate3d(0, 80px, 0);
 }
-.contact-social h2{
-    font-size: 30px;
-    color:#000000b4;
-    text-transform: capitalize;
-    margin-bottom: 1px;
+[data-anime].animate{
+    opacity: 1;
+    transform: translate3d(0px, 0px, 0px);
 }
-.contact-social p{
-    color:#00000085;
-}
-.contact-a{
-    padding: 10%;
-    align-items: center;
-    border-radius: 20px;
-    background-color: #f3f0f6;
-    width: 100%;
-    height: auto;
-    line-height: 40px;
-    transition: all .40s;
-}
-.contact-a i{
-    color: #000000b4;
-    font-size:50px;
-    font-weight: 500;
-}
-.contact-social a:hover{
-    transform: scale(1.1);
-} */
 
 /* Rodapé */
 
