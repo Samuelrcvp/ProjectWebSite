@@ -46,29 +46,6 @@ searchBar.addEventListener("keyup", (event) => {
 //   }
 // }
 
-
-// Rolagem de tela animada
-
-const target = document.querySelectorAll('[data-anime]')
-
-function animeScroll() {
-  const windowTop = window.pageYOffset + ((window.innerHeight * 3) / 4);
-  target.forEach(function(element){
-    if (windowTop > element.offsetTop) {
-      element.classList.add('animate')
-    }else{
-      element.classList.remove('animate')
-    }
-  })
-}
-animeScroll();
-
-if(target.length){
-window.addEventListener('scroll', function(){
-  animeScroll();
-})
-}
-
 // Rolagem de tela header
 
 const header = document.querySelector("header");
