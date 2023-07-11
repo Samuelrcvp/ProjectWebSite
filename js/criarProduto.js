@@ -46,17 +46,17 @@ const productsData = [
     // Adicionar produtos
 ];
 
-const box = produto => produto.categoria === 'box';
-const caneca = produto => produto.categoria === 'caneca';
-const camisa = produto => produto.categoria === 'camisa';
-const produtoSelecionado = document.querySelector('#products-container');
+// const box = produto => produto.categoria === 'box';
+// const caneca = produto => produto.categoria === 'caneca';
+// const camisa = produto => produto.categoria === 'camisa';
+// const produtoSelecionado = document.querySelector('#products-container');
 
-const filtrarCaneca = productsData.filter(produto => caneca(produto));
-console.log(filtrarCaneca);
-const filtrarBox = productsData.filter(produto => box(produto));
-console.log(filtrarBox);
-const filtrarCamisa = productsData.filter(produto => camisa(produto));
-console.log(filtrarCamisa);
+// const filtrarCaneca = productsData.filter(produto => caneca(produto));
+// console.log(filtrarCaneca);
+// const filtrarBox = productsData.filter(produto => box(produto));
+// console.log(filtrarBox);
+// const filtrarCamisa = productsData.filter(produto => camisa(produto));
+// console.log(filtrarCamisa);
 
 
 function createProducts() {
@@ -68,6 +68,7 @@ function createProducts() {
 
         productElement.querySelector(".product-name").textContent = product.nome;
         productElement.querySelector(".product-price").textContent = product.preco;
+        productElement.querySelector(".product-sku").textContent = product.SKU;
         const productImage = productElement.querySelector("img");
         productImage.src = product.imagem;
         // Abrir modal
