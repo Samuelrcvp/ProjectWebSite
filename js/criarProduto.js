@@ -35,14 +35,14 @@ const productsData = [
     {categoria: "box", SKU: 'box034',nome: "box Minnie", preco: "R$180,00", imagem: "/imgs/produtos/FotosSite34.jpg" },
     {categoria: "box", SKU: 'box035',nome: "box Orquídea", preco: "R$190,00", imagem: "/imgs/produtos/FotosSite35.jpg" },
     {categoria: "box", SKU: 'box036',nome: "Box coração", preco: "R$190,00", imagem: "/imgs/produtos/FotosSite36.jpg" },
-    {categoria: "box", SKU: 'box038',nome: "Envelope Heineken", preco: "R$90,00", imagem: "/imgs/produtos/FotosSite37.jpg" },
-    {categoria: "box", SKU: 'box039',nome: "Box corona", preco: "R$320,00", imagem: "/imgs/produtos/FotosSite38.jpg" },
-    {categoria: "box", SKU: 'box040',nome: "Envelope cerveja especial", preco: "R$90,00", imagem: "/imgs/produtos/FotosSite39.jpg" },
-    {categoria: "box", SKU: 'box041',nome: "Box bubble coração", preco: "R$140,00", imagem: "/imgs/produtos/FotosSite40.jpg" },
-    {categoria: "box", SKU: 'box042',nome: "Balde Casal", preco: "R$180,00", imagem: "/imgs/produtos/FotosSite41.jpg" },
-    {categoria: "box", SKU: 'box043',nome: "Balde cervejeiro", preco: "R$180,00", imagem: "/imgs/produtos/FotosSite42.jpg" },
-    {categoria: "box", SKU: 'box044',nome: "Box grande amor", preco: "R$340,00", imagem: "/imgs/produtos/FotosSite43.jpg" },
-    {categoria: "box", SKU: 'box037',nome: "Box vinho", preco: "R$120,00", imagem: "/imgs/produtos/FotosSite44.jpg" },
+    {categoria: "box", SKU: 'box037',nome: "Envelope Heineken", preco: "R$90,00", imagem: "/imgs/produtos/FotosSite37.jpg" },
+    {categoria: "box", SKU: 'box038',nome: "Box corona", preco: "R$320,00", imagem: "/imgs/produtos/FotosSite38.jpg" },
+    {categoria: "box", SKU: 'box039',nome: "Envelope cerveja especial", preco: "R$90,00", imagem: "/imgs/produtos/FotosSite39.jpg" },
+    {categoria: "box", SKU: 'box040',nome: "Box bubble coração", preco: "R$140,00", imagem: "/imgs/produtos/FotosSite40.jpg" },
+    {categoria: "box", SKU: 'box041',nome: "Balde Casal", preco: "R$180,00", imagem: "/imgs/produtos/FotosSite41.jpg" },
+    {categoria: "box", SKU: 'box042',nome: "Balde cervejeiro", preco: "R$180,00", imagem: "/imgs/produtos/FotosSite42.jpg" },
+    {categoria: "box", SKU: 'box043',nome: "Box grande amor", preco: "R$340,00", imagem: "/imgs/produtos/FotosSite43.jpg" },
+    {categoria: "box", SKU: 'box044',nome: "Box vinho", preco: "R$120,00", imagem: "/imgs/produtos/FotosSite44.jpg" },
     // Adicionar produtos
 ];
 
