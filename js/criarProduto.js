@@ -1,5 +1,5 @@
 const productsData = [
-    {categoria: "box", SKU: 'box001',nome: "Box dia das mães 1 metro", preco: "R$180,00", imagem: "/imgs/produtos/FotosSite1.jpg" },
+    {categoria: "box", SKU: 'box001',nome: "Box dia das mães 1 metro", preco: "R$180,00", imagem: "/imgs/produtos/FotosSite1.jpg"},
     {categoria: "box", SKU: 'box002',nome: "Box Aniversário", preco: "R$170,00", imagem: "/imgs/produtos/FotosSite2.jpg" },
     {categoria: "box", SKU: 'box003',nome: "Box dia das mães", preco: "R$160,00", imagem: "/imgs/produtos/FotosSite3.jpg" },
     {categoria: "box", SKU: 'box004',nome: "Box dia das mães", preco: "R$165,00", imagem: "/imgs/produtos/FotosSite4.jpg" },
@@ -9,7 +9,8 @@ const productsData = [
     {categoria: "box", SKU: 'box008',nome: "Box café da manhã", preco: "R$350,00", imagem: "/imgs/produtos/FotosSite8.jpg" },
     {categoria: "box", SKU: 'box009',nome: "Box dia das mães", preco: "R$150,00", imagem: "/imgs/produtos/FotosSite9.jpg" },
     {categoria: "box", SKU: 'box010',nome: "Box café da manhã", preco: "R$350,00", imagem: "/imgs/produtos/FotosSite10.jpg" },
-    {categoria: "box", SKU: 'box011',nome: "Box dia das mães", preco: "R$199,00", imagem: "/imgs/produtos/FotosSite11.jpg" },
+    {categoria: "box", SKU: 'box011',nome: "Box dia das mães", preco: "R$199,00", imagem: "/imgs/produtos/FotosSite11.jpg",
+    imagensSecundarias:["/imgs/produtos/FotosSite11.jpg", "/imgs/produtos/FotosSite11-1.jpg","/imgs/produtos/FotosSite11-2.jpg"] },
     {categoria: "caneca", SKU: 'box012',nome: "duo de xícaras com suporte", preco: "R$90,00", imagem: "/imgs/produtos/FotosSite12.jpg" },
     {categoria: "box", SKU: 'box013',nome: "Box envelope", preco: "R$120,00", imagem: "/imgs/produtos/FotosSite13.jpg" },
     {categoria: "box", SKU: 'box014',nome: "Box dia das mães", preco: "R$189,00", imagem: "/imgs/produtos/FotosSite14.jpg" },
@@ -71,20 +72,43 @@ function createProducts() {
         productElement.querySelector(".product-sku").textContent = product.SKU;
         const productImage = productElement.querySelector("img");
         productImage.src = product.imagem;
-        // Abrir modal
-        productImage.addEventListener ("click", () =>{
-            const modalImage = document.querySelector('#modal-img');
-            modalImage.src = product.imagem;
-            const modal = document.querySelector(".modal");
-            modal.classList.add("modal-active");
-        });
-        // Fechar modal
-        const modalCloseButton = document.querySelector('#bt-close');
-        modalCloseButton.addEventListener("click", () => {
-        const modal = document.querySelector(".modal");
-        modal.classList.remove("modal-active");
-        });       
+        // // Abrir modal
+        // productImage.addEventListener ("click", () =>{
+        //     const modalImage = document.querySelector('#modal-img');
+        //     modalImage.src = product.imagem;
+        //     const modal = document.querySelector(".modal");
+        //     modal.classList.add("modal-active");
+        // });
+        // // Fechar modal
+        // const modalCloseButton = document.querySelector('#bt-close');
+        // modalCloseButton.addEventListener("click", () => {
+        // const modal = document.querySelector(".modal");
+        // modal.classList.remove("modal-active");
+        // });     
+
+        // Adiciona evento de clique ao produto
+        productElement.querySelector(".row").addEventListener("click", () => {
+            // Armazena as informações do produto clicado em sessionStorage
+            sessionStorage.setItem("productDetails", JSON.stringify(product));
+            // Redireciona para a página "detalhes.html"
+            window.location.href = "detalhes.html";
+        });  
+
         productsContainer.appendChild(productElement);
     });
 }
 createProducts();
+
+const productDetails = JSON.parse(sessionStorage.getItem("productDetails"));
+const productImages = document.querySelector('#productImage');
+const smallImg = document.getElementsByClassName('small-imgs');
+
+// Define a imagem principal
+productImages.src = productDetails.imagem;
+
+// Adicione os eventos de clique para as miniaturas de imagem
+for (let i = 0; i < smallImg.length; i++) {
+    smallImg[i].onclick = function() {
+        productImages.src = smallImg[i].src;
+    }
+}

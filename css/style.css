@@ -40,6 +40,7 @@ header{
     display: flex;
 }
 .nav-menu a{
+    text-decoration: none;
     color:#2c2c2c;
     font-size: 16px;
     text-transform: capitalize;
@@ -154,6 +155,7 @@ header{
     transition: all .42s ease;
 }
 .main-btn:hover{
+    text-decoration: none;
     background-color: #000;
     color: #fff;
 }
@@ -369,9 +371,108 @@ header.sticky{
     text-align: center;
     padding: 20px;
 }
+.end-text-detalhes{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #faedff;
+    text-align: center;
+    padding: 20px;
+}
 .end-text p{
     color: #2c2c2c;
 }
+
+/*---------------------------------------------------------------------------------------------------------------*/
+
+/* Detalhes Produtos */
+#MainImg{
+    border-radius: 10px;
+}
+#thumbnails-container{
+    gap: 0.5rem;
+}
+#thumbnails-container img{
+    width: 23.5%;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+#thumbnails-container img:hover{
+    transform: scale(1.1);
+}
+#body-detalhes{
+    overflow-y: hidden;
+}
+.small-img-group{
+    display: flex;
+    width: 100%;
+}
+.small-img-col{
+    flex-basis: 24%;
+    cursor: pointer;
+}
+.sproduct select{
+    display: block;
+    padding: 5px 10px;
+}
+.small-imgs{
+    max-width: 100%;
+    height: auto;
+}
+.rows{
+    display: flex;
+    justify-content: space-between;
+}
+.rows h5{
+    color: #2c2c2c53;
+}
+.rows h1{
+    font-size: 60px;
+    font-weight: 700;
+    color: #000;
+}
+.product-price-details{
+    
+    color: #111;
+    font-size:20px;
+    font-weight: 600;
+}
+#detalhes_mobile{
+    display: none;
+}
+
+/* Responsividade Detalhes */
+
+@media(max-width:1000px){
+    #body-detalhes{
+        overflow-y:scroll;
+    }
+    .rows{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .end-text-detalhes{
+        position:relative;
+    }
+    #detalhes_mobile{
+        display: block;
+    }
+    #detalhes_mobile h1{
+        font-size: 45px;
+    }
+    #detalhes h1,h5{
+        display: none;
+    }
+    .product-price-details{
+        margin-top: 1rem;
+        font-size: 25px;
+    }
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 /* Responsividade */
 
