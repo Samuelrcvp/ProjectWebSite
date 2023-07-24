@@ -237,6 +237,55 @@ header.sticky{
     opacity: 1;
     visibility: visible;
 }
+
+/* Filtro de Produtos */
+
+.radio-filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+    background-color: #EEE;
+    box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+    padding: 0.25rem;
+    font-size: 17px;
+    width: 22rem;
+    margin: auto;
+  }
+ .radio-container{
+    gap: 1rem;
+    display: flex;
+    width: 20rem;
+  }
+  .radio-filter .radio {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+  
+  .radio-filter .radio input {
+    display: none;
+  }
+  
+  .radio-filter .radio .name {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    border: none;
+    padding: .5rem 0;
+    color: rgba(51, 65, 85, 1);
+    transition: all .15s ease-in-out;
+  }
+  
+  .radio-filter .radio input:checked + .name {
+    background-color: #fff;
+    font-weight: 600;
+  } 
+  .hidden {
+    display: none;
+  }
+
 /* Grid de produtos */
 
 .center-text h2{
@@ -244,7 +293,7 @@ header.sticky{
     font-size: 28px;
     text-transform:capitalize;
     text-align: center;
-    margin-bottom: 30px;
+    margin: 2rem;
 }
 .center-text span{
     color:darkorchid;
@@ -252,11 +301,16 @@ header.sticky{
 .products{
     display:grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, auto));
-    gap: 2rem;
+    gap: 2rem;    
+}
+.product-categoria{
+    display: none;
 }
 .row{
+    max-width: 22rem;
     position: relative;
     transition: all .40s;
+
 }
 .row img{
     cursor: pointer;
@@ -376,6 +430,7 @@ header.sticky{
     left: 0;
     bottom: 0;
     width: 100%;
+    max-height: 3.5rem;
     background-color: #faedff;
     text-align: center;
     padding: 20px;
@@ -387,6 +442,7 @@ header.sticky{
 /*---------------------------------------------------------------------------------------------------------------*/
 
 /* Detalhes Produtos */
+
 #MainImg{
     border-radius: 10px;
 }
@@ -400,7 +456,7 @@ header.sticky{
     transition: transform 0.3s ease;
 }
 #thumbnails-container img:hover{
-    transform: scale(1.1);
+    transform: scale(0.9);
 }
 #body-detalhes{
     overflow-y: hidden;
@@ -429,6 +485,7 @@ header.sticky{
     color: #2c2c2c53;
 }
 .rows h1{
+    text-transform:capitalize;
     font-size: 60px;
     font-weight: 700;
     color: #000;
@@ -516,6 +573,14 @@ header.sticky{
     #modal-img{
         width: 85vw;
     }
+}
+@media(max-width:689px){
+    .products{
+        margin-top: 2vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+       }
 }
 
 @media(max-width:855px){

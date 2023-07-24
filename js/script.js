@@ -23,17 +23,17 @@ searchIcon.addEventListener("click", () => {
   }
 });
 
-// adicione um ouvinte de eventos de tecla à barra de pesquisa
-searchBar.addEventListener("keyup", (event) => {
-  // verifique se a tecla pressionada foi Enter
-  if (event.key === "Enter") {
-    // obtenha o valor atual da barra de pesquisa
-    const searchTerm = searchBar.value;
+// // adicione um ouvinte de eventos de tecla à barra de pesquisa
+// searchBar.addEventListener("keyup", (event) => {
+//   // verifique se a tecla pressionada foi Enter
+//   if (event.key === "Enter") {
+//     // obtenha o valor atual da barra de pesquisa
+//     const searchTerm = searchBar.value;
 
-    // redirecione para a página de resultados de pesquisa
-    window.location.href = "/search?query=" + searchTerm;
-  }
-});
+//     // redirecione para a página de resultados de pesquisa
+//     window.location.href = "/search?query=" + searchTerm;
+//   }
+// });
 
 // const searchTerm = "Box Balão de Flores";
 
@@ -92,8 +92,6 @@ document.addEventListener('click', (fecharMenuMobile) => {
 //     img.style.transformOrigin = "center center"
 //     img.style.transform = "scale(1)";
 // });
-
-// Abrir barra Pesquisar
 
 
 

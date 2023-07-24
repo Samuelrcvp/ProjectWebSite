@@ -73,11 +73,40 @@
 
     <!-- Grid dos produtos -->
     
-    <section id="Produtos" class="trending-product">
-        <div class="center-text">
-            <h2>Nossos produtos <span>em alta</span></h2>
-        </div>
+    <div class="center-text">
+        <h2>Nossos produtos <span>em alta</span></h2>
+    </div>
 
+    <section class="radio-filter">
+        <div class="radio-container">
+            <label class="radio">
+            <input type="radio" name="category" value="all" checked>
+            <span class="name">Todos</span>
+            </label>
+            <label class="radio">
+            <input type="radio" name="category" value="box">
+            <span class="name">Box's</span>
+            </label>
+                
+            <label class="radio">
+            <input type="radio" name="category" value="mugs">
+            <span class="name">Canecas</span>
+            </label>
+
+            <label class="radio">
+                <input type="radio" name="category" value="ballon">
+                <span class="name">Balões</span>
+            </label>
+            
+            <label class="radio">
+                <input type="radio" name="category" value="outros">
+                <span class="name">Outros</span>
+            </label>
+        </div>
+    </section>
+
+
+    <section id="Produtos" class="trending-product">
         <div class="modal">
             <div class="modal-content">
                 <img src="/imgs/produtos/FotosSite1.jpg" id="modal-img">
@@ -93,6 +122,8 @@
     <!-- Exemplo de template de produto que pode ser clonado pelo JavaScript -->
     <template id="product-template">
         <div onclick="window.location.href='detalhes.html';" class="row">
+            <div class="product-categoria">
+            </div>
             <div class="card-img">
                 <img class="small-img" src="" alt="Imagem do Produto">
             </div>

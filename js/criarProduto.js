@@ -11,7 +11,7 @@ const productsData = [
     {categoria: "box", SKU: 'box010',nome: "Box café da manhã", preco: "R$350,00", imagem: "/imgs/produtos/FotosSite10.jpg" },
     {categoria: "box", SKU: 'box011',nome: "Box dia das mães", preco: "R$199,00", imagem: "/imgs/produtos/FotosSite11.jpg",
     imagensSecundarias:["/imgs/produtos/FotosSite11.jpg", "/imgs/produtos/FotosSite11-1.jpg","/imgs/produtos/FotosSite11-2.jpg"] },
-    {categoria: "caneca", SKU: 'box012',nome: "duo de xícaras com suporte", preco: "R$90,00", imagem: "/imgs/produtos/FotosSite12.jpg" },
+    {categoria: "mugs", SKU: 'mug012',nome: "duo de xícaras com suporte", preco: "R$90,00", imagem: "/imgs/produtos/FotosSite12.jpg" },
     {categoria: "box", SKU: 'box013',nome: "Box envelope", preco: "R$120,00", imagem: "/imgs/produtos/FotosSite13.jpg" },
     {categoria: "box", SKU: 'box014',nome: "Box dia das mães", preco: "R$189,00", imagem: "/imgs/produtos/FotosSite14.jpg" },
     {categoria: "box", SKU: 'box015',nome: "Box love", preco: "R$180,00", imagem: "/imgs/produtos/FotosSite15.jpg" },
@@ -20,17 +20,17 @@ const productsData = [
     {categoria: "box", SKU: 'box018',nome: "Box café da manhã", preco: "R$350,00", imagem: "/imgs/produtos/FotosSite18.jpg" },
     {categoria: "box", SKU: 'box019',nome: "caixa acrílica com balão", preco: "R$115,00", imagem: "/imgs/produtos/FotosSite19.jpg" },
     {categoria: "box", SKU: 'box020',nome: "caixa acrílica", preco: "R$90,00", imagem: "/imgs/produtos/FotosSite20.jpg" },
-    {categoria: "box", SKU: 'box021',nome: "bubble de mesa grande", preco: "R$75,00", imagem: "/imgs/produtos/FotosSite21.jpg" },
+    {categoria: "ballon", SKU: 'bb021',nome: "bubble de mesa grande", preco: "R$75,00", imagem: "/imgs/produtos/FotosSite21.jpg" },
     {categoria: "box", SKU: 'box022',nome: "Box café da manhã", preco: "R$350,00", imagem: "/imgs/produtos/FotosSite22.jpg" },
     {categoria: "box", SKU: 'box023',nome: "Box cervejeiro", preco: "R$199,00", imagem: "/imgs/produtos/FotosSite23.jpg" },
-    {categoria: "box", SKU: 'box024',nome: "Bubble de mesa pequeno", preco: "R$40,00", imagem: "/imgs/produtos/FotosSite24.jpg" },
+    {categoria: "ballon", SKU: 'bb024',nome: "Bubble de mesa pequeno", preco: "R$40,00", imagem: "/imgs/produtos/FotosSite24.jpg" },
     {categoria: "box", SKU: 'box025',nome: "Box Aniversário", preco: "R$150,00", imagem: "/imgs/produtos/FotosSite25.jpg" },
-    {categoria: "box", SKU: 'box026',nome: "bubble de mesa grande", preco: "R$75,00", imagem: "/imgs/produtos/FotosSite26.jpg" },
+    {categoria: "ballon", SKU: 'bb026',nome: "bubble de mesa grande", preco: "R$75,00", imagem: "/imgs/produtos/FotosSite26.jpg" },
     {categoria: "box", SKU: 'box027',nome: "Box Aniversário", preco: "R$189,00", imagem: "/imgs/produtos/FotosSite27.jpg" },
-    {categoria: "box", SKU: 'box028',nome: "Bubble médio", preco: "R$60,00", imagem: "/imgs/produtos/FotosSite28.jpg" },
+    {categoria: "ballon", SKU: 'bb028',nome: "Bubble médio", preco: "R$60,00", imagem: "/imgs/produtos/FotosSite28.jpg" },
     {categoria: "box", SKU: 'box029',nome: "Box café da manhã", preco: "R$350,00", imagem: "/imgs/produtos/FotosSite29.jpg" },
     {categoria: "box", SKU: 'box030',nome: "caixa acrílica", preco: "R$105,00", imagem: "/imgs/produtos/FotosSite30.jpg" },
-    {categoria: "box", SKU: 'box031',nome: "Bubble grande", preco: "R$75,00", imagem: "/imgs/produtos/FotosSite31.jpg" },
+    {categoria: "ballon", SKU: 'bb031',nome: "Bubble grande", preco: "R$75,00", imagem: "/imgs/produtos/FotosSite31.jpg" },
     {categoria: "box", SKU: 'box032',nome: "box romântica", preco: "R$380,00", imagem: "/imgs/produtos/FotosSite32.jpg" },
     {categoria: "box", SKU: 'box033',nome: "box coorporativo", preco: "R$160,00", imagem: "/imgs/produtos/FotosSite33.jpg" },
     {categoria: "box", SKU: 'box034',nome: "box Minnie", preco: "R$180,00", imagem: "/imgs/produtos/FotosSite34.jpg" },
@@ -44,21 +44,49 @@ const productsData = [
     {categoria: "box", SKU: 'box042',nome: "Balde cervejeiro", preco: "R$180,00", imagem: "/imgs/produtos/FotosSite42.jpg" },
     {categoria: "box", SKU: 'box043',nome: "Box grande amor", preco: "R$340,00", imagem: "/imgs/produtos/FotosSite43.jpg" },
     {categoria: "box", SKU: 'box044',nome: "Box vinho", preco: "R$120,00", imagem: "/imgs/produtos/FotosSite44.jpg" },
+    {categoria: "box", SKU: 'box045',nome: "Box Florida Aniversário", preco: "R$210,00", imagem: "/imgs/produtos/FotosSite45.jpg",
+    imagensSecundarias:["/imgs/produtos/FotosSite45.jpg", "/imgs/produtos/FotosSite45-1.jpg","/imgs/produtos/FotosSite45-2.jpg","/imgs/produtos/FotosSite45-3.jpg"] },
+    {categoria: "box", SKU: 'box046',nome: "Box fechada com visor", preco: "R$120,00", imagem: "/imgs/produtos/FotosSite46.jpg",
+    imagensSecundarias:["/imgs/produtos/FotosSite46.jpg", "/imgs/produtos/FotosSite46-1.jpg","/imgs/produtos/FotosSite46-2.jpg","/imgs/produtos/FotosSite46-3.jpg"] },
+    {categoria: "ballon", SKU: 'bb047',nome: "Balão aniversário tamanho P", preco: "R$40,00", imagem: "/imgs/produtos/FotosSite47.jpg" },
+    {categoria: "ballon", SKU: 'bb048',nome: "Balão aniversário tamanho P", preco: "R$40,00", imagem: "/imgs/produtos/FotosSite48.jpg" },
+    {categoria: "ballon", SKU: 'bb049',nome: "Topo de bolo grande", preco: "R$25,00", imagem: "/imgs/produtos/FotosSite49.jpg",
+    imagensSecundarias:["/imgs/produtos/FotosSite49.jpg", "/imgs/produtos/FotosSite49-1.jpg"] },
+    {categoria:"box", SKU:'box050', nome:"Box café da manhã", preco:"R$280,00", imagem: "/imgs/produtos/FotosSite50.jpg"},
+    {categoria:"outros", SKU:'box051', nome:"tubolatas unidade", preco:"R$12,00", imagem: "/imgs/produtos/FotosSite51.jpg"},
+    {categoria:"ballon", SKU:'bb052', nome:"Balão Bubble joaninha", preco:"R$60,00", imagem: "/imgs/produtos/FotosSite52.jpg"},
+    {categoria:"box", SKU:'box053', nome:"Box café da manhã", preco:"R$230,00", imagem: "/imgs/produtos/FotosSite53.jpg"},
+    {categoria:"box", SKU:'box054', nome:"Box aniversário", preco:"R$160,00", imagem: "/imgs/produtos/FotosSite54.jpg"},
+    {categoria: "box", SKU: 'box055',nome: "Box fechada com visor", preco: "R$120,00", imagem: "/imgs/produtos/FotosSite55.jpg",
+    imagensSecundarias:["/imgs/produtos/FotosSite55.jpg", "/imgs/produtos/FotosSite55-1.jpg","/imgs/produtos/FotosSite55-2.jpg","/imgs/produtos/FotosSite55-3.jpg"] },
+    {categoria:"box", SKU:'box056', nome:"Box namorados vinho", preco:"R$250,00", imagem: "/imgs/produtos/FotosSite56.jpg"},
+    {categoria:"ballon", SKU:'bb057', nome:"Bubble tamanho G", preco:"R$70,00", imagem: "/imgs/produtos/FotosSite57.jpg"},
+    {categoria:"box", SKU:'box058', nome:"Box Guloseimas", preco:"R$170,00", imagem: "/imgs/produtos/FotosSite58.jpg",
+    imagensSecundarias:["/imgs/produtos/FotosSite58.jpg","/imgs/produtos/FotosSite58-1.jpg","/imgs/produtos/FotosSite58-2.jpg"]},
+    {categoria:"box", SKU:'box059', nome:"Box temática Harry Potter", preco:"R$150,00", imagem: "/imgs/produtos/FotosSite59.jpg"},
     // Adicionar produtos
 ];
 
-// const box = produto => produto.categoria === 'box';
-// const caneca = produto => produto.categoria === 'caneca';
-// const camisa = produto => produto.categoria === 'camisa';
-// const produtoSelecionado = document.querySelector('#products-container');
+function filtrarProdutos() {
+  const categoriaSelecionada = document.querySelector('input[name="category"]:checked').value;
+  const productsContainer = document.querySelector('#products-container');
+  const produtos = productsContainer.querySelectorAll('.row');
 
-// const filtrarCaneca = productsData.filter(produto => caneca(produto));
-// console.log(filtrarCaneca);
-// const filtrarBox = productsData.filter(produto => box(produto));
-// console.log(filtrarBox);
-// const filtrarCamisa = productsData.filter(produto => camisa(produto));
-// console.log(filtrarCamisa);
+  produtos.forEach(produto => {
+    const categoriaProduto = produto.querySelector('.product-categoria').textContent;
 
+    if (categoriaSelecionada === 'all' || categoriaSelecionada === categoriaProduto) {
+      produto.style.display = 'grid';
+    } else {
+      produto.style.display = 'none';
+    }
+  });
+}
+
+const radios = document.querySelectorAll('input[name="category"]');
+radios.forEach(radio => {
+  radio.addEventListener("change", filtrarProdutos);
+});
 
 function createProducts() {
     const productsContainer = document.querySelector('#products-container');
@@ -67,6 +95,7 @@ function createProducts() {
     productsData.forEach(product => {
         const productElement = productTemplate.content.cloneNode(true);
 
+        productElement.querySelector(".product-categoria").textContent = product.categoria;
         productElement.querySelector(".product-name").textContent = product.nome;
         productElement.querySelector(".product-price").textContent = product.preco;
         productElement.querySelector(".product-sku").textContent = product.SKU;
@@ -112,3 +141,4 @@ for (let i = 0; i < smallImg.length; i++) {
         productImages.src = smallImg[i].src;
     }
 }
+
