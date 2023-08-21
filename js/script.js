@@ -51,32 +51,6 @@ function removeAccents(str) {
       }
   });
 
-
-
-
-// // adicione um ouvinte de eventos de tecla à barra de pesquisa
-// searchBar.addEventListener("keyup", (event) => {
-//   // verifique se a tecla pressionada foi Enter
-//   if (event.key === "Enter") {
-//     // obtenha o valor atual da barra de pesquisa
-//     const searchTerm = searchBar.value;
-
-//     // redirecione para a página de resultados de pesquisa
-//     window.location.href = "/search?query=" + searchTerm;
-//   }
-// });
-
-// const searchTerm = "Box Balão de Flores";
-
-// // Percorre a matriz productsData
-// for (let i = 0; i < productsData.length; i++) {
-//   // Verifica se o nome do produto corresponde ao termo de pesquisa
-//   if (productsData[i].nome === searchTerm) {
-//     // Faça algo com o produto encontrado, como exibir o nome ou imagem
-//     console.log(productsData[i]);
-//   }
-// }
-
 // Rolagem de tela header
 
 const header = document.querySelector("header");
@@ -90,7 +64,7 @@ window.addEventListener("scroll", ()=>{
 let menu = document.querySelector('#menu-icon');
 let navmenu = document.querySelector('.nav-menu');
 
-menu.onclick = () =>{
+menu.onclick = () => {
     menu.classList.toggle('bx-x');
     navmenu.classList.toggle('open');
 }
@@ -98,10 +72,11 @@ menu.onclick = () =>{
 document.addEventListener('click', (fecharMenuMobile) => {
     // Verifica se o clique ocorreu fora do menu
     if (!fecharMenuMobile.target.closest('#menu-icon') && !fecharMenuMobile.target.closest('.nav-menu')) {
-      menu.classList.remove('bx-x');
-      navmenu.classList.remove('open');
+        menu.classList.remove('bx-x');
+        navmenu.classList.remove('open');
     }
-  });
+});
+
 
 // // Zoom página produtos
 

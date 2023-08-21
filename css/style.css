@@ -606,7 +606,7 @@ header.sticky{
 @media(max-width:855px){
     .show-search-bar {
         visibility: visible;
-        width: 130px;
+        width: 140px;
     }
     .nav-menu{
         position: absolute;
