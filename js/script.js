@@ -5,6 +5,10 @@ const searchIcon = document.querySelector("#search-icon");
 const searchBar = document.querySelector(".search-bar");
 const productTemplate = document.querySelector("#product-template");
 
+function removeAccents(str) {
+  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
   let isSearchBarVisible = false;
 
   searchIcon.addEventListener("click", () => {
@@ -17,7 +21,7 @@ const productTemplate = document.querySelector("#product-template");
               let encontrar = false;
 
               for (const product of productList) {
-                  const productName = product.querySelector(".product-name").textContent.toLowerCase();
+                  const productName = removeAccents(product.querySelector(".product-name").textContent.toLowerCase());
                   if (productName.includes(searchTerm) && searchBar.value !== " ") {
                       product.scrollIntoView({behavior: 'smooth'})
                       encontrar = true;
