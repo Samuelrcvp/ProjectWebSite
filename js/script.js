@@ -16,7 +16,7 @@ function removeAccents(str) {
           if (searchBar.value === "") {
               searchBar.classList.remove("show-search-bar");
           } else {
-              const searchTerm = searchBar.value.toLowerCase();
+              const searchTerm = removeAccents(searchBar.value.toLowerCase());
               const productList = document.querySelectorAll(".row");
               let encontrar = false;
 
@@ -35,6 +35,8 @@ function removeAccents(str) {
                   }, 500);
               }
           }
+          searchBar.value = "";
+
       } else {
           searchBar.classList.add("show-search-bar");
           searchBar.focus();
