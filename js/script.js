@@ -1,27 +1,52 @@
 
 // Barra de pesquisa
 
-// selecione o ícone de pesquisa
 const searchIcon = document.querySelector("#search-icon");
-
-// selecione a barra de pesquisa
 const searchBar = document.querySelector(".search-bar");
+const productTemplate = document.querySelector("#product-template");
 
-// adicione um ouvinte de eventos de clique ao ícone de pesquisa
-searchIcon.addEventListener("click", () => {
-  // verifique se a barra de pesquisa já está visível
-  if (searchBar.classList.contains("show-search-bar")) {
-    // obtenha o valor atual da barra de pesquisa
-    const searchTerm = searchBar.value;
+  let isSearchBarVisible = false;
 
-    // redirecione para a página de resultados de pesquisa
-    window.location.href = "/search?query=" + searchTerm;
-  } else {
-    // exiba a barra de pesquisa
-    searchBar.classList.add("show-search-bar");
-    searchBar.focus();
-  }
-});
+  searchIcon.addEventListener("click", () => {
+      if (isSearchBarVisible) {
+          if (searchBar.value === "") {
+              searchBar.classList.remove("show-search-bar");
+          } else {
+              const searchTerm = searchBar.value.toLowerCase();
+              const productList = document.querySelectorAll(".row");
+              let encontrar = false;
+
+              for (const product of productList) {
+                  const productName = product.querySelector(".product-name").textContent.toLowerCase();
+                  if (productName.includes(searchTerm) && searchBar.value !== " ") {
+                      product.scrollIntoView({behavior: 'smooth'})
+                      encontrar = true;
+                  }
+              }
+
+              if (!encontrar) {
+                  searchBar.classList.add("error");
+                  setTimeout(() => {
+                      searchBar.classList.remove("error");
+                  }, 500);
+              }
+          }
+      } else {
+          searchBar.classList.add("show-search-bar");
+          searchBar.focus();
+      }
+      
+      isSearchBarVisible = !isSearchBarVisible;
+  });
+
+  searchBar.addEventListener("keyup", (event) => {
+      if (event.key === "Enter") {
+          searchIcon.click();
+      }
+  });
+
+
+
 
 // // adicione um ouvinte de eventos de tecla à barra de pesquisa
 // searchBar.addEventListener("keyup", (event) => {
