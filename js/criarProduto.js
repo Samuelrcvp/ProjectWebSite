@@ -64,6 +64,13 @@ const productsData = [
     {categoria:"box", SKU:'box058', nome:"Box Guloseimas", preco:"R$170,00", imagem: "/imgs/produtos/FotosSite58.jpg",
     imagensSecundarias:["/imgs/produtos/FotosSite58.jpg","/imgs/produtos/FotosSite58-1.jpg","/imgs/produtos/FotosSite58-2.jpg"]},
     {categoria:"box", SKU:'box059', nome:"Box temática Harry Potter", preco:"R$150,00", imagem: "/imgs/produtos/FotosSite59.jpg"},
+    {categoria:"box", SKU:'box060', nome:"Box de Vinho", preco:"R$260,00", imagem: "/imgs/produtos/FotosSite60.jpg",
+    imagensSecundarias:["/imgs/produtos/FotosSite60.jpg","/imgs/produtos/FotosSite60-1.jpg","/imgs/produtos/FotosSite60-2.jpg","/imgs/produtos/FotosSite60-3.jpg"]},
+    {categoria:"box", SKU:'box061', nome:"Box futebol - Galo", preco:"R$260,00", imagem: "/imgs/produtos/FotosSite61.jpg"},
+    {categoria:"box", SKU:'box062', nome:"Box Cerveja Heineken", preco:"R$220,00", imagem: "/imgs/produtos/FotosSite62.jpg",
+    imagensSecundarias:["/imgs/produtos/FotosSite62.jpg","/imgs/produtos/FotosSite62-1.jpg"]},
+    {categoria:"box", SKU:'box063', nome:"Box Amiga Psicologa", preco:"R$230,00", imagem: "/imgs/produtos/FotosSite63.jpg",
+    imagensSecundarias:["/imgs/produtos/FotosSite63.jpg","/imgs/produtos/FotosSite63-1.jpg","/imgs/produtos/FotosSite63-2.jpg"]},
     // Adicionar produtos
 ];
 
