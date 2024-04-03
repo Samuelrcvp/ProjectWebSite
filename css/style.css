@@ -538,7 +538,8 @@ header.sticky{
         display: block;
     }
     #detalhes_mobile h1{
-        font-size: 45px;
+        font-size: 35px;
+        margin-bottom: 2rem;
     }
     #detalhes h1,h5{
         display: none;

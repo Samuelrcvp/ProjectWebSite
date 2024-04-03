@@ -3,6 +3,7 @@ const productDetails = JSON.parse(sessionStorage.getItem("productDetails"));
 document.addEventListener("DOMContentLoaded", () => {
     const productImage = document.querySelector('#MainImg');
     const smallImg = document.getElementsByClassName('small-imgs');
+    const description = document.getElementsByClassName('description');
 
     // Define a imagem principal
     productImage.src = productDetails.imagem;
@@ -19,7 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector('.product-name-datails').textContent = productDetails.nome;
     document.querySelector('.product-price-details').textContent = productDetails.preco;
     document.querySelector('.product-name-datails-mobile').textContent = productDetails.nome;
-    
+    if (productDetails && productDetails.description) {
+      document.querySelector('.description').textContent = productDetails.description;
+    }
 });
 
 const thumbnailsContainer = document.querySelector('.small-img-group');

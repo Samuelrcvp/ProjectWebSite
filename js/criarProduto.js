@@ -1,40 +1,84 @@
 const productsData = [
-    {categoria: "box", SKU: 'box001',nome: "Box maternidade", preco: "R$330,00", imagem: "/imgs/produtos/FotosSite1.jpg",
+    {categoria: "box", SKU: 'box001',nome: "Box maternidade", preco: "R$330,00", imagem: "/imgs/produtos/FotosSite1.jpg", 
+    description:"A Box contém: caixa MDF com tampa decorada e personalizada, balão bubble decorado e personalizado, pelúcia, lenço umedecido, sabonete barra, shampoo, condicionador (todos da marca Granado) e cartão personalizado.",
     imagensSecundarias:["/imgs/produtos/FotosSite1.jpg", "/imgs/produtos/FotosSite1-1.jpg","/imgs/produtos/FotosSite1-2.jpg"] },
-    {categoria: "box", SKU: 'box002',nome: "Box Aniversário", preco: "R$170,00", imagem: "/imgs/produtos/FotosSite2.jpg" },
-    {categoria: "box", SKU: 'box003',nome: "Box Envelope", preco: "R$150,00", imagem: "/imgs/produtos/FotosSite3.jpg" },
-    {categoria: "box", SKU: 'box004',nome: "Box dia das mães", preco: "R$165,00", imagem: "/imgs/produtos/FotosSite4.jpg" },
-    {categoria: "box", SKU: 'box005',nome: "Box Prata", preco: "R$270,00", imagem: "/imgs/produtos/FotosSite5.jpg" },
-    {categoria: "ballon", SKU: 'bb006',nome: "Balão médio melancia", preco: "R$60,00", imagem: "/imgs/produtos/FotosSite6.jpg" },
+    {categoria: "box", SKU: 'box002',nome: "Box Aniversário", preco: "R$170,00", imagem: "/imgs/produtos/FotosSite2.jpg", 
+     description:"A Box contém: caixa MDF com tampa decorada e personalizada, balão bubble decorado e personalizado, flores, 2 chocolates talento, garrafa de água plástica personalizada em vinil com nome e cartão personalizado."
+    },
+    {categoria: "box", SKU: 'box003',nome: "Box Envelope", preco: "R$150,00", imagem: "/imgs/produtos/FotosSite3.jpg",
+    description:"A box contém: Caixa de papel em formato carta decorada e personalizada, balão metalizado pequeno decorado e personalizado, flores, caneca e cartão personalizado."
+    },
+    {categoria: "box", SKU: 'box004',nome: "Box dia das mães", preco: "R$165,00", imagem: "/imgs/produtos/FotosSite4.jpg",
+    description:"Caixa MDF ou papel cartão decorada e personalizada, balão bubble decorado e personalizado, mini balão metalizado estrela, espumante baby, taça de vidro, 4 bombons Ferrero Rocher ou mini cookies e cartão personalizado."
+    },
+    {categoria: "box", SKU: 'box005',nome: "Box Prata", preco: "R$270,00", imagem: "/imgs/produtos/FotosSite5.jpg",
+    description:"A Box contém: caixa MDF com tampa decorada e aplique em MDF com tema escolhido, balão bubble decorado e personalizado, garrafa alumínio personalizada, caneca louça personalizada, 2 camisas personalizadas (feminina e masculina) e cartão personalizado."
+    },
+    {categoria: "ballon", SKU: 'bb006',nome: "Balão médio melancia", preco: "R$60,00", imagem: "/imgs/produtos/FotosSite6.jpg",
+    description:"Balão de aproximadamente 60 cm de altura e 40 cm de diâmetro. Base 2 andares."
+    },
     {categoria: "box", SKU: 'box007',nome: "Box Aniversário", preco: "R$280,00", imagem: "/imgs/produtos/FotosSite7.jpg",
+    description:"A Box contém: caixa MDF com tampa decorada e personalizada, balão bubble decorado e personalizado, garrafinha com flores,  par de xícaras com pires, sachet de capuccino e de café com leite,  biscoito artesanal doce e cartão personalizado.",
     imagensSecundarias:["/imgs/produtos/FotosSite7.jpg", "/imgs/produtos/FotosSite7-1.jpg","/imgs/produtos/FotosSite7-2.jpg","/imgs/produtos/FotosSite7-3.jpg"] },
-    {categoria: "box", SKU: 'box008',nome: "Box café da manhã", preco: "R$350,00", imagem: "/imgs/produtos/FotosSite8.jpg" },
-    {categoria: "box", SKU: 'box009',nome: "Box Aniversário", preco: "R$220,00", imagem: "/imgs/produtos/FotosSite9.jpg" },
-    {categoria: "box", SKU: 'box010',nome: "Box café da manhã", preco: "R$350,00", imagem: "/imgs/produtos/FotosSite10.jpg" },
+    {categoria: "box", SKU: 'box008',nome: "Box café da manhã", preco: "R$350,00", imagem: "/imgs/produtos/FotosSite8.jpg",
+    description:"A Box contém: Caixa MDF crua decorada e personalizada, balão bubble decorado e personalizado, flores, foto polaroide, bolo de cenoura com chocolate, pão integral fatiado, croassant, financier, geléia, nutella, salada de frutas, suco Prats ou Natural, sache cappuccino, provolone desidratado, cartão personalizado."
+    },
+    {categoria: "box", SKU: 'box009',nome: "Box Aniversário", preco: "R$220,00", imagem: "/imgs/produtos/FotosSite9.jpg" ,
+    description:"A box contém: caixa papel cartão redonda decorada e personalizada, balão bubble decorado e personalizado, flores, biscoitos artesanais, sache de capuccino e café com leite, polenguinho e cartão personalizado."
+    },
+    {categoria: "box", SKU: 'box010',nome: "Box café da manhã", preco: "R$350,00", imagem: "/imgs/produtos/FotosSite10.jpg",
+    description:"A Box contém: Caixa MDF crua decorada e personalizada, balão bubble decorado e personalizado, flores, decorativo coração vazado, salada de frutas, frios fatiados, pães, croassant, ciabatta de azeitona, financier, Nutella, geléia, suco Natural, sachê capuccino tradicional, sachê capucino doce de leite e cartão personalizado."
+    },
     {categoria: "box", SKU: 'box011',nome: "Box dia das mães", preco: "R$199,00", imagem: "/imgs/produtos/FotosSite11.jpg",
+    description:"A box contém: caixa papel cartão redonda decorada e personalizada, balão bubble decorado e personalizado, flores, barra chocolate lindt, chocolates Rafaello e cartão personaliado.",
     imagensSecundarias:["/imgs/produtos/FotosSite11.jpg", "/imgs/produtos/FotosSite11-1.jpg","/imgs/produtos/FotosSite11-2.jpg"] },
     {categoria: "mugs", SKU: 'mug012',nome: "duo de xícaras com suporte", preco: "R$90,00", imagem: "/imgs/produtos/FotosSite12.jpg" },
-    {categoria: "box", SKU: 'box013',nome: "Box envelope", preco: "R$120,00", imagem: "/imgs/produtos/FotosSite13.jpg" },
-    {categoria: "box", SKU: 'box014',nome: "Box dia das mães", preco: "R$189,00", imagem: "/imgs/produtos/FotosSite14.jpg" },
-    {categoria: "box", SKU: 'box015',nome: "Box love", preco: "R$180,00", imagem: "/imgs/produtos/FotosSite15.jpg" },
-    {categoria: "box", SKU: 'box016',nome: "Box dia das mães", preco: "R$169,00", imagem: "/imgs/produtos/FotosSite16.jpg" },
-    {categoria: "box", SKU: 'box017',nome: "Box dia das mães", preco: "R$249,00", imagem: "/imgs/produtos/FotosSite17.jpg" },
-    {categoria: "box", SKU: 'box018',nome: "Box café da manhã", preco: "R$350,00", imagem: "/imgs/produtos/FotosSite18.jpg" },
-    {categoria: "box", SKU: 'box019',nome: "caixa acrílica com balão", preco: "R$115,00", imagem: "/imgs/produtos/FotosSite19.jpg" },
-    {categoria: "box", SKU: 'box020',nome: "caixa acrílica", preco: "R$90,00", imagem: "/imgs/produtos/FotosSite20.jpg" },
-    {categoria: "ballon", SKU: 'bb021',nome: "bubble de mesa grande", preco: "R$75,00", imagem: "/imgs/produtos/FotosSite21.jpg" },
-    {categoria: "box", SKU: 'box022',nome: "Box café da manhã", preco: "R$350,00", imagem: "/imgs/produtos/FotosSite22.jpg" },
-    {categoria: "box", SKU: 'box023',nome: "Box cervejeiro", preco: "R$199,00", imagem: "/imgs/produtos/FotosSite23.jpg" },
-    {categoria: "ballon", SKU: 'bb024',nome: "Bubble de mesa pequeno", preco: "R$40,00", imagem: "/imgs/produtos/FotosSite24.jpg" },
-    {categoria: "box", SKU: 'box025',nome: "Box Aniversário", preco: "R$150,00", imagem: "/imgs/produtos/FotosSite25.jpg" },
-    {categoria: "ballon", SKU: 'bb026',nome: "bubble de mesa grande", preco: "R$75,00", imagem: "/imgs/produtos/FotosSite26.jpg" },
+    {categoria: "box", SKU: 'box013',nome: "Box envelope", preco: "R$120,00", imagem: "/imgs/produtos/FotosSite13.jpg",
+    description:"A box contém: Caixa de papel em formato carta decorada e personalizada, balão metalizado pequeno decorado e personalizado, cerveja especial Blue Moon, caixa de Ferrero Rocher, taca de vidro e cartão personalizado."
+    },
+    {categoria: "box", SKU: 'box014',nome: "Box dia das mães", preco: "R$189,00", imagem: "/imgs/produtos/FotosSite14.jpg",
+    description:"A Box contém: Caixa MDF crua decorada e personalizada, balão bubble decorado e personalizado, garrafinha personalizada com flores, caneca personalizada, macarrons e cartão personalizado."
+    },
+    {categoria: "box", SKU: 'box015',nome: "Box love", preco: "R$180,00", imagem: "/imgs/produtos/FotosSite15.jpg",
+    description:"Arranjo de rosa com decorativo vasado de coração, Ferrero Focher e balão metalizado decorado e personalizado."
+    },
+    {categoria:"box", SKU:'box016', nome:"Box Aniversário", preco:"R$280,00", imagem: "/imgs/produtos/FotosSite16.jpg",
+    imagensSecundarias:["/imgs/produtos/FotosSite16.jpg","/imgs/produtos/FotosSite16-1.jpg","/imgs/produtos/FotosSite16-2.jpg","/imgs/produtos/FotosSite16-3.jpg"]},
+    {categoria: "box", SKU: 'box017',nome: "Box dia das mães", preco: "R$280,00", imagem: "/imgs/produtos/FotosSite17.jpg",
+    description:"A Box contém: caixa MDF com tampa decorada e personalizada, balão bubble decorado e personalizado, garrafinha com flores,  par de xícaras com pires, sachet de capuccino e de café com leite, suco Prats ou Natural, biscoito artesanal doce e cartão personalizado."
+    },
+    {categoria: "box", SKU: 'box018',nome: "Box café da manhã", preco: "R$350,00", imagem: "/imgs/produtos/FotosSite18.jpg",
+    description:"A Box contém: Caixa MDF crua decorada e personalizada, balão bubble decorado e personalizado, flores, pão fatiado, biscoitos caseiros, iogurtes, saladas de frutas, frios fatiados, nutella, bolo de cenoura, sucos Prats, polenguinhos e cartão personalizado."
+    },
+    {categoria: "box", SKU: 'box019',nome: "caixa acrílica com balão", preco: "R$115,00", imagem: "/imgs/produtos/FotosSite19.jpg",
+    description:"Caixa acrílica decorada e personalizada com caneca personalizada, bombons Ferrero Rocher e balão metalizado personalizado."
+    },
+    {categoria: "box", SKU: 'box020',nome: "caixa acrílica", preco: "R$90,00", imagem: "/imgs/produtos/FotosSite20.jpg" ,
+    description:"Caixa acrílica decorada e personalizada com caneca personalizada e bombons Ferrero Rocher."
+    },
+    {categoria: "ballon", SKU: 'bb021',nome: "bubble de mesa grande", preco: "R$75,00", imagem: "/imgs/produtos/FotosSite21.jpg",
+    description:"Balão de aproximadamente 60 cm de altura e 60 cm de diâmetro. Base 2 andares."
+    },
+    {categoria: "box", SKU: 'box022',nome: "Box café da manhã", preco: "R$350,00", imagem: "/imgs/produtos/FotosSite22.jpg",
+    description:"A Box contém: Caixa MDF crua decorada e personalizada, balão bubble decorado e personalizado, flores, suco Prats, capuccino, água de côco, fatias de bolo cenoura com chocolate, pão ciabatta rústica de azeitonas, pão fatiado especial rústico, croassant, biscoitos artesanais, presunto e mussarela, geleia de damasco, Nutella, salada de frutas, Donuts, foto Polaroid e cartão personalizado."
+    },
+    /* {categoria: "box", SKU: 'box023',nome: "Box cervejeiro", preco: "R$199,00", imagem: "/imgs/produtos/FotosSite23.jpg" }, */
+    {categoria: "ballon", SKU: 'bb024',nome: "Bubble de mesa pequeno", preco: "R$40,00", imagem: "/imgs/produtos/FotosSite24.jpg",
+    description:"Balão de aproximadamente 40 cm de altura e 30 cm de diâmetro. Base 1 andar."
+    },
+    {categoria: "box", SKU: 'box025',nome: "Box Aniversário", preco: "R$150,00", imagem: "/imgs/produtos/FotosSite25.jpg",
+    description:"A box contém: caixa papel cartão redonda decorada e personalizada, balão bubble decorado e personalizado, biscoitos artesanais, 2 barras de chocolate, mini cuador de café com mini xícara esmaltada e cartão personalizado."
+    },
+    {categoria: "ballon", SKU: 'bb026',nome: "bubble de mesa grande", preco: "R$75,00", imagem: "/imgs/produtos/FotosSite26.jpg", 
+    description:"Balão de aproximadamente 60 cm de altura e 60 cm de diâmetro. Base 2 andares e 3 clusters."
+    },
     {categoria: "box", SKU: 'box027',nome: "Box Aniversário", preco: "R$189,00", imagem: "/imgs/produtos/FotosSite27.jpg" },
     {categoria: "ballon", SKU: 'bb028',nome: "Bubble médio", preco: "R$60,00", imagem: "/imgs/produtos/FotosSite28.jpg" },
     {categoria: "box", SKU: 'box029',nome: "Box café da manhã", preco: "R$350,00", imagem: "/imgs/produtos/FotosSite29.jpg" },
     {categoria: "box", SKU: 'box030',nome: "caixa acrílica", preco: "R$105,00", imagem: "/imgs/produtos/FotosSite30.jpg" },
     {categoria: "ballon", SKU: 'bb031',nome: "Bubble grande", preco: "R$75,00", imagem: "/imgs/produtos/FotosSite31.jpg" },
     {categoria: "box", SKU: 'box032',nome: "box romântica", preco: "R$380,00", imagem: "/imgs/produtos/FotosSite32.jpg" },
-    {categoria: "box", SKU: 'box033',nome: "box coorporativo", preco: "R$160,00", imagem: "/imgs/produtos/FotosSite33.jpg" },
+    {categoria: "box", SKU: 'box033',nome: "box coorporativo", preco: "R$180,00", imagem: "/imgs/produtos/FotosSite33.jpg" },
     {categoria: "box", SKU: 'box034',nome: "box Minnie", preco: "R$180,00", imagem: "/imgs/produtos/FotosSite34.jpg" },
     {categoria: "box", SKU: 'box035',nome: "box Orquídea", preco: "R$190,00", imagem: "/imgs/produtos/FotosSite35.jpg" },
     {categoria: "box", SKU: 'box036',nome: "Box coração", preco: "R$190,00", imagem: "/imgs/produtos/FotosSite36.jpg" },
@@ -94,8 +138,6 @@ const productsData = [
     {categoria:"box", SKU:'box076', nome:"Balde cerveja", preco:"R$230,00", imagem: "/imgs/produtos/FotosSite76.jpg",
     imagensSecundarias:["/imgs/produtos/FotosSite76.jpg","/imgs/produtos/FotosSite76-1.jpg","/imgs/produtos/FotosSite76-2.jpg","/imgs/produtos/FotosSite76-3.jpg"]},
     {categoria:"ballon", SKU:'bb077', nome:"Balão de Mesa M", preco:"R$60,00", imagem: "/imgs/produtos/FotosSite77.jpg"},
-    {categoria:"box", SKU:'box078', nome:"Box Aniversário", preco:"R$280,00", imagem: "/imgs/produtos/FotosSite78.jpg",
-    imagensSecundarias:["/imgs/produtos/FotosSite78.jpg","/imgs/produtos/FotosSite78-1.jpg","/imgs/produtos/FotosSite78-2.jpg","/imgs/produtos/FotosSite78-3.jpg"]},
     // Adicionar produtos
 ];
 
