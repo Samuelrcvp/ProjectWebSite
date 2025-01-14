@@ -351,8 +351,8 @@ header.sticky{
     font-weight: 600;
     text-transform: uppercase;
     background-color: #27b737;
-    padding: 3px 10px;
-    border-radius: 2px;
+    padding: 2px 5px;
+    border-radius: 5px;
 }
 .price h4{
     color:#111;
