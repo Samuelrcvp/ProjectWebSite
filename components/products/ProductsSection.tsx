@@ -14,11 +14,14 @@ const CATEGORIES = [
   { value: "outros", label: "Outros" },
 ];
 
+const PAGE_SIZE = 16;
+
 export default function ProductsSection() {
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [selected, setSelected] = useState("all");
   const [loading, setLoading] = useState(true);
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     async function load() {
@@ -54,6 +57,9 @@ export default function ProductsSection() {
           return p.categoryId === selected;
         });
 
+  const hasMore = filtered.length > PAGE_SIZE;
+  const visibleProducts = showAll ? filtered : filtered.slice(0, PAGE_SIZE);
+
   return (
     <>
       {/* Filter pills */}
@@ -67,7 +73,7 @@ export default function ProductsSection() {
                   name="category"
                   value={cat.value}
                   checked={selected === cat.value}
-                  onChange={() => setSelected(cat.value)}
+                  onChange={() => { setSelected(cat.value); setShowAll(false); }}
                   className="hidden"
                 />
                 <span
@@ -88,54 +94,67 @@ export default function ProductsSection() {
         {loading ? (
           <ProductGridSkeleton />
         ) : (
-          <div className="grid gap-6 grid-cols-2 min-[640px]:grid-cols-3 min-[1110px]:grid-cols-4">
-            {filtered.map((product) => {
-              const mainImage = product.images?.[0]?.url ?? product.images?.[0]?.url ?? "";
-              return (
-                <Link
-                  key={product.id}
-                  href={`/produto/${product.id}`}
-                  className="product-card relative w-full transition-all duration-[400ms] cursor-pointer block"
-                  data-name={product.name}
-                  data-sku={product.sku}
-                  data-category={product.categoryId}
-                >
-                  <div className="relative">
-                    {mainImage ? (
-                      <Image
-                        src={mainImage}
-                        alt={product.name}
-                        width={400}
-                        height={500}
-                        className="w-full h-auto transition-all duration-[400ms] rounded-[10px] hover:scale-90"
-                        sizes="(max-width: 1110px) 50vw, 260px"
-                        style={{ height: "auto" }}
-                      />
-                    ) : (
-                      <div className="w-full aspect-square bg-gray-200 rounded-[10px] flex items-center justify-center">
-                        <i className="bx bx-image text-4xl text-gray-400" />
+          <>
+            <div className="grid gap-6 grid-cols-2 min-[640px]:grid-cols-3 min-[1110px]:grid-cols-4">
+              {visibleProducts.map((product) => {
+                const mainImage = product.images?.[0]?.url ?? product.images?.[0]?.url ?? "";
+                return (
+                  <Link
+                    key={product.id}
+                    href={`/produto/${product.id}`}
+                    className="product-card relative w-full transition-all duration-[400ms] cursor-pointer block"
+                    data-name={product.name}
+                    data-sku={product.sku}
+                    data-category={product.categoryId}
+                  >
+                    <div className="relative">
+                      {mainImage ? (
+                        <Image
+                          src={mainImage}
+                          alt={product.name}
+                          width={400}
+                          height={500}
+                          className="w-full h-auto transition-all duration-[400ms] rounded-[10px] hover:scale-90"
+                          sizes="(max-width: 1110px) 50vw, 260px"
+                          style={{ height: "auto" }}
+                        />
+                      ) : (
+                        <div className="w-full aspect-square bg-gray-200 rounded-[10px] flex items-center justify-center">
+                          <i className="bx bx-image text-4xl text-gray-400" />
+                        </div>
+                      )}
+                      <div className="absolute top-[13px] left-[13px]">
+                        <h5 className="text-white text-[12px] font-semibold uppercase bg-[#27b737] px-[5px] py-[2px] rounded-[5px]">
+                          {product.sku}
+                        </h5>
                       </div>
-                    )}
-                    <div className="absolute top-[13px] left-[13px]">
-                      <h5 className="text-white text-[12px] font-semibold uppercase bg-[#27b737] px-[5px] py-[2px] rounded-[5px]">
-                        {product.sku}
-                      </h5>
                     </div>
-                  </div>
-                  <div className="mt-3 flex flex-col gap-1">
-                    <h4 className="text-[#111] text-base capitalize font-semibold">
-                      {product.name}
-                    </h4>
-                    <p className="text-[#151515] text-sm font-black">
-                      {typeof product.price === "number"
-                        ? `R$${product.price.toFixed(2).replace(".", ",")}`
-                        : product.price}
-                    </p>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
+                    <div className="mt-3 flex flex-col gap-1">
+                      <h4 className="text-[#111] text-base capitalize font-semibold">
+                        {product.name}
+                      </h4>
+                      <p className="text-[#151515] text-sm font-black">
+                        {typeof product.price === "number"
+                          ? `R$${product.price.toFixed(2).replace(".", ",")}`
+                          : product.price}
+                      </p>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+
+            {!showAll && hasMore && (
+              <div className="flex justify-center mt-10">
+                <button
+                  onClick={() => setShowAll(true)}
+                  className="border-2 border-[#9932cc] text-[#9932cc] font-semibold px-8 py-3 rounded-lg hover:bg-[#9932cc] hover:text-white transition-all duration-[350ms]"
+                >
+                  Ver todos ({filtered.length})
+                </button>
+              </div>
+            )}
+          </>
         )}
       </section>
     </>

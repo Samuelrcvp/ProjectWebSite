@@ -80,13 +80,12 @@ export default function PublicHeader() {
     >
       <Link href="/" id="logo">
         <Image
-          src="/imgs/logoSite.png"
+          src="/imgs/logoSite.svg"
           alt="logo Carapuça Presentes"
-          width={123}
-          height={62}
-          quality={100}
+          width={110}
+          height={44}
           unoptimized
-          style={{ width: 123, height: "auto" }}
+          style={{ width: 110, height: "auto" }}
         />
       </Link>
 
@@ -109,7 +108,7 @@ export default function PublicHeader() {
       </ul>
 
       <div className="relative flex items-center gap-4">
-        <div className="relative flex items-center gap-4">
+        <div className="relative flex items-center gap-4 max-[630px]:hidden">
           <input
             type="text"
             value={searchQuery}

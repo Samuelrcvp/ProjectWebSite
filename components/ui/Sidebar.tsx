@@ -19,7 +19,10 @@ export default function Sidebar() {
   async function handleLogout() {
     setLoggingOut(true);
     try {
-      await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
+      await fetch("/api/auth/logout", {
+        method: "POST",
+        credentials: "include",
+      });
     } finally {
       router.push("/petten");
     }
@@ -30,13 +33,24 @@ export default function Sidebar() {
       <div className="p-6 border-b border-purple-100">
         <Link href="/" target="_blank">
           <Image
-            src="/imgs/logoSite.png"
+            src="/imgs/logoSite.svg"
             alt="Carapuça"
             width={120}
             height={48}
-            quality={100}
+            unoptimized
             style={{ width: 120, height: "auto" }}
           />
+        </Link>
+      </div>
+
+      <div className="px-4 py-2.5 border-b border-purple-100">
+        <Link
+          href="/"
+          target="_blank"
+          className="flex items-center gap-2 text-xs text-gray-400 hover:text-[#9932cc] transition font-medium"
+        >
+          <i className="bx bx-link-external text-sm" />
+          Ver site
         </Link>
       </div>
 
@@ -86,11 +100,11 @@ export default function Sidebar() {
       <div className="md:hidden fixed top-0 left-0 right-0 z-40 bg-white border-b border-purple-100 flex items-center justify-between px-4 py-3 shadow-sm">
         <Link href="/" target="_blank">
           <Image
-            src="/imgs/logoSite.png"
+            src="/imgs/logoSite.svg"
             alt="Carapuça"
             width={100}
             height={40}
-            quality={100}
+            unoptimized
             style={{ width: 100, height: "auto" }}
           />
         </Link>

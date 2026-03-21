@@ -85,7 +85,7 @@ export default function ProductForm({ product }: Props) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl">
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-semibold text-gray-700 mb-1">
             SKU <span className="text-red-500">*</span>
@@ -171,7 +171,7 @@ export default function ProductForm({ product }: Props) {
         <ImageUpload images={images} onChange={setImages} />
       </div>
 
-      <div className="flex gap-3 pt-2">
+      <div className="flex flex-wrap gap-3 pt-2">
         <button
           type="submit"
           disabled={loading}

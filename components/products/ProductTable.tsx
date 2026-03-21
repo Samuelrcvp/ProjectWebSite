@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, memo } from "react";
+import { useState, useEffect, useCallback, useRef, memo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import toast from "react-hot-toast";
@@ -11,22 +11,9 @@ import Spinner from "@/components/ui/Spinner";
 import { getProducts, deleteProduct, reorderProducts } from "@/services/firebase/products";
 import type { Product } from "@/types";
 
-// ─── Linha arrastável (HTML5 DnD nativo — sem hooks de contexto) ──────────────
+// ─── Densidade ────────────────────────────────────────────────────────────────
 
 type RowDensity = "compact" | "normal" | "comfortable";
-
-interface RowProps {
-  product: Product;
-  rowIndex: number;
-  isDragSource: boolean;
-  isDragTarget: boolean;
-  sourceIsAbove: boolean;
-  dragDisabled: boolean;
-  onDragStart: (index: number) => void;
-  onDragEnter: (index: number) => void;
-  onDragEnd: () => void;
-  onDelete: (id: string) => void;
-}
 
 const DENSITY_CSS: Record<RowDensity, { py: string; img: string }> = {
   compact:     { py: "0.75rem", img: "3.5rem" },
@@ -52,30 +39,37 @@ const imgStyle: React.CSSProperties = {
   height: "var(--row-img)",
 };
 
+// ─── Linha arrastável ─────────────────────────────────────────────────────────
+
+interface RowProps {
+  product: Product;
+  rowIndex: number;
+  dragDisabled: boolean;
+  // Desktop (HTML5 DnD)
+  onDragStart: (index: number) => void;
+  onDragEnter: (index: number) => void;
+  onDragEnd: () => void;
+  // Mobile (touch no handle)
+  onTouchStart: (index: number) => void;
+  onDelete: (id: string) => void;
+}
+
 const DraggableRow = memo(function DraggableRow({
   product,
   rowIndex,
-  isDragSource,
-  isDragTarget,
-  sourceIsAbove,
   dragDisabled,
   onDragStart,
   onDragEnter,
   onDragEnd,
+  onTouchStart,
   onDelete,
 }: RowProps) {
   const mainImg =
     product.images?.find((img) => img.isMain)?.url ?? product.images?.[0]?.url;
 
-  let rowClass = "hover:bg-gray-50";
-  if (isDragSource) rowClass = "opacity-30 bg-primary-light";
-  if (isDragTarget)
-    rowClass += sourceIsAbove
-      ? " border-b-2 border-primary"
-      : " border-t-2 border-primary";
-
   return (
     <tr
+      data-row={rowIndex}
       draggable={!dragDisabled}
       onDragStart={(e) => {
         e.dataTransfer.effectAllowed = "move";
@@ -84,18 +78,23 @@ const DraggableRow = memo(function DraggableRow({
       onDragEnter={() => onDragEnter(rowIndex)}
       onDragOver={(e) => e.preventDefault()}
       onDragEnd={onDragEnd}
-      className={rowClass}
+      className="hover:bg-gray-50"
     >
-      {/* Handle visual */}
+      {/* Handle — desktop: cursor-grab | mobile: touch events */}
       <td style={tdPy} className="px-3 w-8">
         {!dragDisabled && (
-          <span className="p-1 text-gray-300 hover:text-gray-500 cursor-grab active:cursor-grabbing rounded block">
+          <span
+            className="p-1 text-gray-300 hover:text-gray-500 cursor-grab active:cursor-grabbing rounded block touch-none select-none"
+            onTouchStart={(e) => {
+              e.stopPropagation();
+              onTouchStart(rowIndex);
+            }}
+          >
             <i className="bx bx-grid-vertical text-xl" />
           </span>
         )}
       </td>
 
-      {/* Imagem */}
       <td style={tdPy} className="px-4">
         {mainImg ? (
           <Image
@@ -154,13 +153,129 @@ export default function ProductTable() {
   const [orderedIds, setOrderedIds] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [dragSource, setDragSource] = useState<number | null>(null);
-  const [dragOver, setDragOver] = useState<number | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [deleting, setDeleting] = useState(false);
   const [saving, setSaving] = useState(false);
   const [density, setDensity] = useState<RowDensity>("normal");
   const [densitySpin, setDensitySpin] = useState(false);
+
+  // ── Refs para drag desktop (zero setState durante o arrasto) ───────────────
+  const dragSourceRef = useRef<number | null>(null);
+  const dragOverRef   = useRef<number | null>(null);
+  const tbodyRef      = useRef<HTMLTableSectionElement>(null);
+
+  // ── Refs para drag touch mobile ────────────────────────────────────────────
+  const touchSourceRef  = useRef<number | null>(null);
+  const touchOverRef    = useRef<number | null>(null);
+  const touchCleanupRef = useRef<(() => void) | null>(null);
+
+  // ── Helpers DOM ────────────────────────────────────────────────────────────
+
+  const getRow = useCallback((i: number) =>
+    tbodyRef.current?.querySelector<HTMLTableRowElement>(`tr[data-row="${i}"]`) ?? null,
+  []);
+
+  const clearDragStyles = useCallback(() => {
+    tbodyRef.current?.querySelectorAll<HTMLTableRowElement>("tr[data-row]").forEach((tr) => {
+      tr.style.opacity   = "";
+      tr.style.boxShadow = "";
+    });
+  }, []);
+
+  const applyDropIndicator = useCallback((over: number, src: number) => {
+    const row = getRow(over);
+    if (!row) return;
+    row.style.boxShadow = src < over
+      ? "inset 0 -3px 0 0 #9932cc"
+      : "inset 0  3px 0 0 #9932cc";
+  }, [getRow]);
+
+  const clearOverIndicator = useCallback((over: number) => {
+    const row = getRow(over);
+    if (row) row.style.boxShadow = "";
+  }, [getRow]);
+
+  // ── Handlers desktop HTML5 DnD (zero re-renders durante o drag) ───────────
+
+  const handleDragStart = useCallback((index: number) => {
+    dragSourceRef.current = index;
+    const row = getRow(index);
+    if (row) row.style.opacity = "0.3";
+  }, [getRow]);
+
+  const handleDragEnter = useCallback((index: number) => {
+    if (dragOverRef.current === index) return;
+    if (dragOverRef.current !== null) clearOverIndicator(dragOverRef.current);
+    dragOverRef.current = index;
+    const src = dragSourceRef.current;
+    if (src !== null && src !== index) applyDropIndicator(index, src);
+  }, [clearOverIndicator, applyDropIndicator]);
+
+  const handleDragEnd = useCallback(() => {
+    const src  = dragSourceRef.current;
+    const over = dragOverRef.current;
+    clearDragStyles();
+    dragSourceRef.current = null;
+    dragOverRef.current   = null;
+    if (src !== null && over !== null && src !== over) {
+      setOrderedIds((prev) => arrayMove(prev, src, over));
+    }
+  }, [clearDragStyles]);
+
+  // ── Handlers touch mobile ──────────────────────────────────────────────────
+  // Os listeners touchmove/touchend são adicionados ao document somente
+  // enquanto o drag está ativo — sem custo no scroll normal da página.
+
+  const handleTouchStart = useCallback((index: number) => {
+    touchSourceRef.current = index;
+    const row = getRow(index);
+    if (row) row.style.opacity = "0.3";
+
+    function onTouchMove(e: TouchEvent) {
+      e.preventDefault(); // bloqueia scroll só durante o drag
+
+      const touch = e.touches[0];
+      const el = document.elementFromPoint(touch.clientX, touch.clientY);
+      const targetRow = el?.closest("tr[data-row]") as HTMLTableRowElement | null;
+      if (!targetRow) return;
+
+      const over = parseInt(targetRow.dataset.row ?? "", 10);
+      if (isNaN(over)) return;
+      if (touchOverRef.current === over) return; // guard — mesma linha, ignora
+
+      if (touchOverRef.current !== null) clearOverIndicator(touchOverRef.current);
+      touchOverRef.current = over;
+      const src = touchSourceRef.current;
+      if (src !== null && src !== over) applyDropIndicator(over, src);
+    }
+
+    function onTouchEnd() {
+      cleanup();
+      const src  = touchSourceRef.current;
+      const over = touchOverRef.current;
+      clearDragStyles();
+      touchSourceRef.current = null;
+      touchOverRef.current   = null;
+      if (src !== null && over !== null && src !== over) {
+        setOrderedIds((prev) => arrayMove(prev, src, over));
+      }
+    }
+
+    function cleanup() {
+      document.removeEventListener("touchmove", onTouchMove);
+      document.removeEventListener("touchend",  onTouchEnd);
+      touchCleanupRef.current = null;
+    }
+
+    touchCleanupRef.current = cleanup;
+    document.addEventListener("touchmove", onTouchMove, { passive: false });
+    document.addEventListener("touchend",  onTouchEnd,  { once: true });
+  }, [getRow, clearDragStyles, clearOverIndicator, applyDropIndicator]);
+
+  // Limpa listeners touch se o componente desmontar durante um drag
+  useEffect(() => () => { touchCleanupRef.current?.(); }, []);
+
+  // ── Carregamento ───────────────────────────────────────────────────────────
 
   const cycleDensity = useCallback(() => {
     setDensity((prev) => {
@@ -182,9 +297,7 @@ export default function ProductTable() {
     setLoading(false);
   }, []);
 
-  useEffect(() => {
-    void load();
-  }, [load]);
+  useEffect(() => { void load(); }, [load]);
 
   const orderedProducts = orderedIds
     .map((id) => products.find((p) => p.id === id))
@@ -208,24 +321,6 @@ export default function ProductTable() {
     !searchActive &&
     orderedIds.join(",") !== products.map((p) => p.id).join(",");
 
-  // ── Handlers de drag ──────────────────────────────────────────────────────
-
-  const handleDragStart = useCallback((index: number) => {
-    setDragSource(index);
-  }, []);
-
-  const handleDragEnter = useCallback((index: number) => {
-    setDragOver(index);
-  }, []);
-
-  const handleDragEnd = useCallback(() => {
-    if (dragSource !== null && dragOver !== null && dragSource !== dragOver) {
-      setOrderedIds((prev) => arrayMove(prev, dragSource, dragOver));
-    }
-    setDragSource(null);
-    setDragOver(null);
-  }, [dragSource, dragOver]);
-
   // ── Handlers de ordem ─────────────────────────────────────────────────────
 
   const handleSaveOrder = useCallback(async () => {
@@ -235,9 +330,7 @@ export default function ProductTable() {
     if (res.success) {
       toast.success("Ordem salva!");
       setProducts(
-        orderedIds
-          .map((id) => products.find((p) => p.id === id))
-          .filter(Boolean) as Product[]
+        orderedIds.map((id) => products.find((p) => p.id === id)).filter(Boolean) as Product[]
       );
     } else {
       toast.error("Erro ao salvar ordem.");
@@ -313,12 +406,7 @@ export default function ProductTable() {
               disabled={saving}
               className="flex items-center gap-2 bg-primary text-white text-sm font-semibold rounded-lg px-4 py-2 hover:bg-[#7a1fa8] transition disabled:opacity-50"
             >
-              {saving && (
-                <Spinner
-                  size="sm"
-                  className="border-white border-t-transparent"
-                />
-              )}
+              {saving && <Spinner size="sm" className="border-white border-t-transparent" />}
               {saving ? "Salvando..." : "Salvar ordem"}
             </button>
           </div>
@@ -347,33 +435,18 @@ export default function ProductTable() {
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
                   <th className="w-8 px-3 py-3" />
-                  <th className="text-left px-4 py-3 font-semibold text-gray-700">
-                    Imagem
-                  </th>
-                  <th className="text-left px-4 py-3 font-semibold text-gray-700">
-                    Nome
-                  </th>
-                  <th className="text-left px-4 py-3 font-semibold text-gray-700">
-                    SKU
-                  </th>
-                  <th className="text-left px-4 py-3 font-semibold text-gray-700">
-                    Preço
-                  </th>
-                  <th className="text-left px-4 py-3 font-semibold text-gray-700">
-                    Categoria
-                  </th>
-                  <th className="text-right px-4 py-3 font-semibold text-gray-700">
-                    Ações
-                  </th>
+                  <th className="text-left px-4 py-3 font-semibold text-gray-700">Imagem</th>
+                  <th className="text-left px-4 py-3 font-semibold text-gray-700">Nome</th>
+                  <th className="text-left px-4 py-3 font-semibold text-gray-700">SKU</th>
+                  <th className="text-left px-4 py-3 font-semibold text-gray-700">Preço</th>
+                  <th className="text-left px-4 py-3 font-semibold text-gray-700">Categoria</th>
+                  <th className="text-right px-4 py-3 font-semibold text-gray-700">Ações</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100">
+              <tbody ref={tbodyRef} className="divide-y divide-gray-100">
                 {displayList.length === 0 ? (
                   <tr>
-                    <td
-                      colSpan={7}
-                      className="text-center py-10 text-gray-400"
-                    >
+                    <td colSpan={7} className="text-center py-10 text-gray-400">
                       Nenhum produto encontrado.
                     </td>
                   </tr>
@@ -383,17 +456,11 @@ export default function ProductTable() {
                       key={product.id}
                       product={product}
                       rowIndex={i}
-                      isDragSource={dragSource === i}
-                      isDragTarget={
-                        dragOver === i &&
-                        dragSource !== null &&
-                        dragSource !== i
-                      }
-                      sourceIsAbove={dragSource !== null && dragSource < i}
                       dragDisabled={searchActive}
                       onDragStart={handleDragStart}
                       onDragEnter={handleDragEnter}
                       onDragEnd={handleDragEnd}
+                      onTouchStart={handleTouchStart}
                       onDelete={handleSetDeleteId}
                     />
                   ))

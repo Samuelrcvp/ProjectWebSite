@@ -23,20 +23,20 @@ export default function HomePage() {
         ].join(" ")}
       >
         <div>
-          <h5 className="text-[#9932cc] text-base font-semibold">
+          <h5 className="text-[#9932cc] text-base max-[630px]:text-sm font-semibold">
             Personalizados e Únicos
           </h5>
-          <h1 className="text-black text-[4rem] max-[630px]:text-[50px] font-semibold capitalize leading-[1.1] mt-1.5 mb-2.5">
+          <h1 className="text-black text-[4rem] max-[630px]:text-[2.5rem] font-semibold capitalize leading-[1.1] mt-1.5 mb-2.5">
             Surpreenda
             <br />
             quem gosta!
           </h1>
-          <p className="text-[#333c56] text-xl italic mb-5">
+          <p className="text-[#333c56] text-xl max-[630px]:text-base italic mb-5 max-[630px]:leading-snug">
             Presentes exclusivos para momentos inesquecíveis.
           </p>
           <a
             href="https://api.whatsapp.com/send/?phone=5531997379997&text&type=phone_number&app_absent=0"
-            className="inline-block text-[#111] text-base font-semibold capitalize border-2 border-[#111] px-6 py-3 transition-all duration-[420ms] hover:bg-black hover:text-white"
+            className="inline-block text-[#111] text-base max-[630px]:text-sm font-semibold capitalize border-2 border-[#111] px-6 py-3 max-[630px]:px-4 max-[630px]:py-2 transition-all duration-[420ms] hover:bg-black hover:text-white"
           >
             Faça seu pedido <i className="bx bx-right-arrow-alt align-middle" />
           </a>
@@ -119,30 +119,30 @@ export default function HomePage() {
 
       {/* ── Contato ──────────────────────────────────────────── */}
       <section id="Contato" className="px-[10%] max-[1110px]:px-[3%] py-16">
-        <h3 className="text-black text-3xl capitalize text-center font-bold mb-10">
+        <h3 className="text-black text-3xl max-[630px]:text-2xl capitalize text-center font-bold mb-10">
           Como você prefere falar com a gente?
         </h3>
-        <article className="flex justify-center gap-6 max-[855px]:flex-col max-[855px]:items-center">
+        <article className="flex justify-center gap-6 max-[855px]:flex-col max-[855px]:items-stretch max-[855px]:max-w-lg max-[855px]:mx-auto">
           {[
             {
               key: "instagram",
               href: "https://www.instagram.com/carapucapresentes/",
               icon: "bxl-instagram",
-              title: <span className="font-bold">Instagram</span>,
+              title: "Instagram",
               desc: "Confira nossas últimas postagens!",
             },
             {
               key: "whatsapp",
               href: "https://api.whatsapp.com/send/?phone=5531997379997&text&type=phone_number&app_absent=0",
               icon: "bxl-whatsapp",
-              title: <span className="font-bold">Whatsapp</span>,
-              desc: "clique e abra o chat.",
+              title: "Whatsapp",
+              desc: "Clique e abra o chat.",
             },
             {
               key: "email",
               href: "mailto:contato@carapucapresentes.com.br",
               icon: "bx-envelope",
-              title: <span className="font-bold">Email</span>,
+              title: "Email",
               desc: "Tem alguma dúvida?",
             },
           ].map((item) => (
@@ -151,18 +151,34 @@ export default function HomePage() {
               href={item.href}
               target="_blank"
               rel="noreferrer"
-              className="block py-14 px-8 min-w-[16rem] w-full max-w-[22rem] min-[1110px]:max-w-[30rem] text-center rounded-[20px] bg-[#f3f0f6] leading-[40px] transition-all duration-[400ms] shadow-[1px_1px_15px_#ccc] hover:scale-110 max-[855px]:max-w-full"
+              className={[
+                /* base (desktop) */
+                "block py-14 px-8 min-w-[16rem] w-full max-w-[22rem] min-[1110px]:max-w-[30rem]",
+                "text-center rounded-[20px] bg-[#f3f0f6] leading-[40px]",
+                "transition-all duration-[400ms] shadow-[1px_1px_15px_#ccc] hover:scale-105",
+                /* mobile override */
+                "max-[855px]:flex max-[855px]:flex-row max-[855px]:items-center",
+                "max-[855px]:py-4 max-[855px]:px-5 max-[855px]:gap-4",
+                "max-[855px]:text-left max-[855px]:leading-normal max-[855px]:max-w-full",
+                "max-[855px]:rounded-2xl",
+              ].join(" ")}
             >
-              <i className={`bx ${item.icon} text-[#000000b4] text-[40px]`} />
-              <h2 className="text-[30px] text-[#000000b4] capitalize mb-[1px]">
-                {item.title}
-              </h2>
-              <p className="text-[#00000085] leading-5">{item.desc}</p>
+              <i
+                className={`bx ${item.icon} text-[#000000b4] text-[40px] max-[855px]:text-[34px] max-[855px]:shrink-0`}
+              />
+              <div className="max-[855px]:flex-1">
+                <h2 className="text-[30px] text-[#000000b4] capitalize mb-[1px] max-[855px]:text-[18px] max-[855px]:font-bold max-[855px]:leading-tight max-[855px]:mb-0">
+                  {item.title}
+                </h2>
+                <p className="text-[#00000085] leading-5 max-[855px]:text-sm max-[855px]:leading-snug">
+                  {item.desc}
+                </p>
+              </div>
+              <i className="bx bx-chevron-right text-2xl text-gray-400 !hidden max-[855px]:!block" />
             </a>
           ))}
         </article>
       </section>
-
     </>
   );
 }

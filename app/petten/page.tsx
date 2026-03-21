@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 import { signIn } from "@/services/firebase/auth";
 import type { ApiResponse } from "@/types";
 
@@ -60,13 +61,22 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f3f0f6]">
       <div className="bg-white rounded-2xl shadow-lg p-10 w-full max-w-md">
+        <div className="mb-4 text-center">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-[#9932cc] transition"
+          >
+            <i className="bx bx-arrow-back text-base" />
+            Voltar para o site
+          </Link>
+        </div>
         <div className="flex justify-center mb-8">
           <Image
-            src="/imgs/logoSite.png"
+            src="/imgs/logoSite.svg"
             alt="Carapuça Presentes"
             width={150}
             height={60}
-            quality={100}
+            unoptimized
             className="h-auto"
           />
         </div>
