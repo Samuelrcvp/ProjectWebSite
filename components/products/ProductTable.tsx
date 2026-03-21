@@ -8,7 +8,7 @@ import { arrayMove } from "@dnd-kit/sortable";
 import ConfirmDialog from "@/components/ui/ConfirmDialog";
 import { TableSkeleton } from "@/components/ui/Skeleton";
 import Spinner from "@/components/ui/Spinner";
-import { getProducts, deleteProduct, reorderProducts } from "@/services/firebase/products";
+import { getProducts, deleteProduct, reorderProducts, updateProduct } from "@/services/firebase/products";
 import type { Product } from "@/types";
 
 // ─── Densidade ────────────────────────────────────────────────────────────────
@@ -52,6 +52,8 @@ interface RowProps {
   // Mobile (touch no handle)
   onTouchStart: (index: number) => void;
   onDelete: (id: string) => void;
+  onToggleActive: (id: string, active: boolean) => void;
+  isToggling: boolean;
 }
 
 const DraggableRow = memo(function DraggableRow({
@@ -63,6 +65,8 @@ const DraggableRow = memo(function DraggableRow({
   onDragEnd,
   onTouchStart,
   onDelete,
+  onToggleActive,
+  isToggling,
 }: RowProps) {
   const mainImg =
     product.images?.find((img) => img.isMain)?.url ?? product.images?.[0]?.url;
@@ -125,7 +129,21 @@ const DraggableRow = memo(function DraggableRow({
       </td>
       <td style={tdPy} className="px-4 text-gray-600">{product.categoryName || "—"}</td>
       <td style={tdPy} className="px-4">
-        <div className="flex gap-2 justify-end">
+        <div className="flex gap-2 items-center justify-end">
+          <button
+            onClick={() => onToggleActive(product.id, !(product.active ?? true))}
+            disabled={isToggling}
+            title={product.active ? "Desativar da página principal" : "Ativar na página principal"}
+            className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors duration-200 focus:outline-none disabled:opacity-50 ${
+              product.active ? "bg-primary" : "bg-gray-300"
+            }`}
+          >
+            <span
+              className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform duration-200 ${
+                product.active ? "translate-x-6" : "translate-x-1"
+              }`}
+            />
+          </button>
           <Link
             href={`/controle/products/${product.id}/edit`}
             className="p-2 text-primary hover:bg-primary-light rounded-lg transition"
@@ -156,6 +174,7 @@ export default function ProductTable() {
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [deleting, setDeleting] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [togglingId, setTogglingId] = useState<string | null>(null);
   const [density, setDensity] = useState<RowDensity>("normal");
   const [densitySpin, setDensitySpin] = useState(false);
 
@@ -342,6 +361,21 @@ export default function ProductTable() {
     setOrderedIds(products.map((p) => p.id));
   }, [products]);
 
+  // ── Handler de ativar/desativar ────────────────────────────────────────────
+
+  const handleToggleActive = useCallback(async (id: string, active: boolean) => {
+    setTogglingId(id);
+    const res = await updateProduct(id, { active });
+    if (res.success) {
+      setProducts((prev) =>
+        prev.map((p) => (p.id === id ? { ...p, active } : p))
+      );
+    } else {
+      toast.error("Erro ao atualizar visibilidade.");
+    }
+    setTogglingId(null);
+  }, []);
+
   // ── Handlers de delete ────────────────────────────────────────────────────
 
   const handleSetDeleteId = useCallback((id: string) => setDeleteId(id), []);
@@ -462,6 +496,8 @@ export default function ProductTable() {
                       onDragEnd={handleDragEnd}
                       onTouchStart={handleTouchStart}
                       onDelete={handleSetDeleteId}
+                      onToggleActive={handleToggleActive}
+                      isToggling={togglingId === product.id}
                     />
                   ))
                 )}

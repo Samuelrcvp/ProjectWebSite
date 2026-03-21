@@ -7,6 +7,7 @@ import {
 } from "firebase-admin/app";
 import { getAuth } from "firebase-admin/auth";
 import { getFirestore } from "firebase-admin/firestore";
+import { getStorage } from "firebase-admin/storage";
 
 let _app: App | null = null;
 
@@ -39,4 +40,10 @@ export function getAdminAuth() {
 
 export function getAdminDb() {
   return getFirestore(getAdminApp());
+}
+
+export function getAdminStorage() {
+  return getStorage(getAdminApp()).bucket(
+    process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+  );
 }

@@ -20,6 +20,7 @@ export interface Product {
   categoryName?: string;
   images: ProductImage[];
   displayOrder?: number;
+  active?: boolean;
   createdAt?: Timestamp | string;
   updatedAt?: Timestamp | string;
 }

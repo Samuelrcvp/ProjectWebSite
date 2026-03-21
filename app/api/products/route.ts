@@ -42,6 +42,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
         categoryName: categoryMap.get(data.categoryId as string) ?? "",
         images: data.images as Product["images"],
         displayOrder: data.displayOrder as number,
+        active: (data.active as boolean) ?? true,
         createdAt: data.createdAt?.toDate?.()?.toISOString() ?? "",
         updatedAt: data.updatedAt?.toDate?.()?.toISOString() ?? "",
       };
@@ -100,6 +101,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       categoryId: body.categoryId.trim(),
       images: body.images,
       displayOrder: minOrder - 1,
+      active: false,
       createdAt: FieldValue.serverTimestamp(),
       updatedAt: FieldValue.serverTimestamp(),
     });
@@ -115,6 +117,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       description: data.description as string,
       categoryId: data.categoryId as string,
       images: data.images as Product["images"],
+      active: (data.active as boolean) ?? false,
     };
 
     return NextResponse.json<ApiResponse<Product>>(

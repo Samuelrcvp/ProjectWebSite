@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getAdminDb } from "@/lib/firebase-admin";
+import { getAdminDb, getAdminStorage } from "@/lib/firebase-admin";
 import { verifyRequest } from "@/lib/api-auth";
 import type { ApiResponse, Product } from "@/types";
 import { FieldValue } from "firebase-admin/firestore";
@@ -33,6 +33,7 @@ export async function GET(
       description: data.description as string,
       categoryId: data.categoryId as string,
       images: data.images as Product["images"],
+      active: (data.active as boolean) ?? true,
       createdAt: data.createdAt?.toDate?.()?.toISOString() ?? "",
       updatedAt: data.updatedAt?.toDate?.()?.toISOString() ?? "",
     };
@@ -85,6 +86,9 @@ export async function PUT(
     if (Array.isArray(body.images)) {
       updates.images = body.images;
     }
+    if (typeof body.active === "boolean") {
+      updates.active = body.active;
+    }
     if (typeof body.sku === "string" && body.sku.trim()) {
       const existing = await db
         .collection("products")
@@ -113,6 +117,7 @@ export async function PUT(
       description: data.description as string,
       categoryId: data.categoryId as string,
       images: data.images as Product["images"],
+      active: (data.active as boolean) ?? true,
       createdAt: data.createdAt?.toDate?.()?.toISOString() ?? "",
       updatedAt: data.updatedAt?.toDate?.()?.toISOString() ?? "",
     };
@@ -144,6 +149,13 @@ export async function DELETE(
         { status: 404 }
       );
     }
+
+    const sku = doc.data()!.sku as string;
+
+    const bucket = getAdminStorage();
+    const [files] = await bucket.getFiles({ prefix: `produtos/${sku}/` });
+    await Promise.all(files.map((file) => file.delete()));
+
     await db.collection("products").doc(id).delete();
     return NextResponse.json<ApiResponse<null>>({ success: true, data: null });
   } catch {

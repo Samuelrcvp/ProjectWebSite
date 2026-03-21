@@ -9,18 +9,20 @@ export async function GET(): Promise<NextResponse> {
       .orderBy("displayOrder", "asc")
       .get();
 
-    const products: Product[] = snapshot.docs.map((doc) => {
-      const data = doc.data();
-      return {
-        id: doc.id,
-        sku: data.sku as string,
-        name: data.name as string,
-        price: data.price as number,
-        description: data.description as string,
-        categoryId: data.categoryId as string,
-        images: data.images as Product["images"],
-      };
-    });
+    const products: Product[] = snapshot.docs
+      .filter((doc) => (doc.data().active as boolean) !== false)
+      .map((doc) => {
+        const data = doc.data();
+        return {
+          id: doc.id,
+          sku: data.sku as string,
+          name: data.name as string,
+          price: data.price as number,
+          description: data.description as string,
+          categoryId: data.categoryId as string,
+          images: data.images as Product["images"],
+        };
+      });
 
     return NextResponse.json<ApiResponse<Product[]>>({ success: true, data: products });
   } catch {
