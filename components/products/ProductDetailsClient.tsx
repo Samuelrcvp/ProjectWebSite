@@ -92,7 +92,7 @@ export default function ProductDetailsClient({ product }: Props) {
               "Surpreenda alguém especial com presentes personalizados e cheios de alegria! Perfeitos para encantar e emocionar em qualquer ocasião."}
           </p>
           <a
-            href="https://api.whatsapp.com/send/?phone=5531997379997&text&type=phone_number&app_absent=0"
+            href="https://api.whatsapp.com/send/?phone=5531994169997&text&type=phone_number&app_absent=0"
             className="inline-block text-[#111] text-base font-semibold capitalize border-2 border-[#111] px-6 py-3 transition-all duration-[420ms] hover:bg-black hover:text-white mt-4"
           >
             Faça seu pedido <i className="bx bx-right-arrow-alt align-middle" />

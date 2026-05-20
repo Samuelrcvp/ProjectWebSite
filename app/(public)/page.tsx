@@ -35,7 +35,7 @@ export default function HomePage() {
             Presentes exclusivos para momentos inesquecíveis.
           </p>
           <a
-            href="https://api.whatsapp.com/send/?phone=5531997379997&text&type=phone_number&app_absent=0"
+            href="https://api.whatsapp.com/send/?phone=5531994169997&text&type=phone_number&app_absent=0"
             className="inline-block text-[#111] text-base max-[630px]:text-sm font-semibold capitalize border-2 border-[#111] px-6 py-3 max-[630px]:px-4 max-[630px]:py-2 transition-all duration-[420ms] hover:bg-black hover:text-white"
           >
             Faça seu pedido <i className="bx bx-right-arrow-alt align-middle" />
@@ -45,7 +45,7 @@ export default function HomePage() {
         {/* WhatsApp flutuante — oculto em mobile ≤630px */}
         <div className="absolute top-[85%] left-[4%] max-[630px]:hidden">
           <a
-            href="https://api.whatsapp.com/send/?phone=5531997379997&text&type=phone_number&app_absent=0"
+            href="https://api.whatsapp.com/send/?phone=5531994169997&text&type=phone_number&app_absent=0"
             target="_blank"
             rel="noreferrer"
           >
@@ -133,7 +133,7 @@ export default function HomePage() {
             },
             {
               key: "whatsapp",
-              href: "https://api.whatsapp.com/send/?phone=5531997379997&text&type=phone_number&app_absent=0",
+              href: "https://api.whatsapp.com/send/?phone=5531994169997&text&type=phone_number&app_absent=0",
               icon: "bxl-whatsapp",
               title: "Whatsapp",
               desc: "Clique e abra o chat.",
